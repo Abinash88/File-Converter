@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,600&family=Open+Sans:wght@500;600;700;800&family=Oswald:wght@500;600;700&family=Pacifico&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.headerlogo{
+  font-family: 'Borel', cursive;
+}
+
+
+.herosection{
+  background: #31389e;
+}
+
+.topheader{
+  background: #31389e;
+}
+
+
+/* title style section  */
+.herotitle{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+}
+
+
+/* main file converter box styles  */
+.main_file_converter_box{
+  background-color: #ffffff10;
+}
+
+
+/* upload clicking box for file uploader styles  */
+.uploadbox{
+  border: 1px dashed #f5f5f54f;
+  background-color: #ddd8d815;
+}
+
+.uploadbox .uploadarrow{
+  color: #c2c2c2;
+  transition: .2s;
+}
+
+.uploadbox:hover .uploadarrow{
+  height: 37px;
+}
+
+.uploadbox:hover{
+  border: 1px solid #f5f5f54f;
+  background-color: #ddd8d828;
+}
+
+
+/* select file type option box styles  */
+.selectoption option{
+  background-color: #ffffff49 !important;
+}
+
+
+/* file form upload section styles  */
+.fileform{
+  position: absolute;
+  opacity: 0;
+}
