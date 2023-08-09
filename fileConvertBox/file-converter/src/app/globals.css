@@ -6,34 +6,16 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
 .headerlogo{
   font-family: 'Borel', cursive;
+  color: #ffbd15;
 }
 
+
+.changecolor{
+  color:#ffbd15 !important ;
+}
 
 .herosection{
   background: #31389e;
@@ -100,4 +82,17 @@ body {
   background: rgba(255, 255, 255, 0.151);
   color: white;
   border: 1.5px solid rgba(214, 211, 211, 0.637);
+}
+
+.Navigation ul li:hover {
+  color: #ffbd15;
+}
+
+
+/* more file converter gird box styles  */
+.moreconvertbox{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  gap: 30px;
+  justify-items: center;
 }
