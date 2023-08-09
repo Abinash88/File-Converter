@@ -2,7 +2,9 @@ import React from 'react'
 
 const Blog = () => {
   return (
-    <div>Blog</div>
+    <div className='w-full h-[100vh]'>
+        
+    </div>
   )
 }
 
