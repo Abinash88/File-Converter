@@ -12,6 +12,10 @@
   color: #ffbd15;
 }
 
+.logolink{
+  display: flex;
+}
+
 
 .changecolor{
   color:#ffbd15 !important ;
@@ -92,7 +96,7 @@
 /* more file converter gird box styles  */
 .moreconvertbox{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr ;
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) ;
+  grid-auto-rows: 200px;
   justify-items: center;
 }

@@ -1,4 +1,5 @@
-import { DocumentChartBarIcon, DocumentCheckIcon, DocumentIcon,DocumentTimeline, DocumentType } from "@heroicons/react/24/solid";
+// import { DocumentChartBarIcon, DocumentCheckIcon, DocumentIcon,DocumentTimeline, DocumentType, DocumentFragment } from "@heroicons/react/24/solid";
+import { DocumentArrowDownIcon, DocumentChartBarIcon, DocumentCheckIcon, DocumentIcon, DocumentMinusIcon, DocumentTextIcon } from "@heroicons/react/24/solid";
 import React from "react";
 
 const MoreConvert = () => {
@@ -20,17 +21,17 @@ const MoreConvert = () => {
                 </div>
 
                 <div className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2">
-                    <DocumentTimeline className="h-12 text-yellow-500"/>
+                    <DocumentTextIcon className="h-12 text-yellow-500"/>
                     <p className="text-yellow-500 font-semibold">JPG TO DODC</p>
                 </div>
 
                 <div className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2">
-                    <DocumentType className="h-12 text-yellow-500"/>
+                    <DocumentChartBarIcon className="h-12 text-yellow-500"/>
                     <p className="text-yellow-500 font-semibold">JPG TO DOC</p>
                 </div>
 
                 <div className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2">
-                    <DocumentChartBarIcon className="h-12 text-yellow-500"/>
+                    <DocumentArrowDownIcon className="h-12 text-yellow-500"/>
                     <p className="text-yellow-500 font-semibold">JPG TO PDF</p>
                 </div>
 
@@ -40,7 +41,7 @@ const MoreConvert = () => {
                 </div>
 
                 <div className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2">
-                    <DocumentFragment className="h-12 text-yellow-500"/>
+                    <DocumentMinusIcon className="h-12 text-yellow-500"/>
                     <p className="text-yellow-500 font-semibold">JPG TO PDF</p>
                 </div>
         </div>

@@ -28,11 +28,12 @@ const MainFileConverter = () => {
       const formData = new FormData();
       formData.append("files", files);
       formData.append('fileType', fileType)
-      const res = await axios.post("http://localhost:5000/file/GetFileData", {
+      const res = await fetch("http://localhost:5000/file/GetFileData", {
+        method: 'POST',
         body: formData,
       });
 
-      const data = res.data;
+      const data =await res.json();
       if (!data.success) return console.error(data.message);
       setloading(false);
       console.log(data.message);
@@ -48,7 +49,7 @@ const MainFileConverter = () => {
         <select
           onChange={getFileType}
           name="filetype"
-          className="selectoption w-[50%] px-4 rounded-md py-2 bg-transparent border text-gray-100 outline-none  hover:font-semibold"
+          className="selectoption w-[50%] px-4 rounded-md py-2 bg-transparent border border-yellow-400 text-gray-100 outline-none  hover:font-semibold"
           id="filetypes"
         >
           <option className="text-gray-600 font-semibold" value="-Select-">
@@ -73,6 +74,7 @@ const MainFileConverter = () => {
               <input
                 onChange={getTheFile}
                 type="file"
+                name="files"
                 className=" w-full h-full inputfile"
               />
             </form>
