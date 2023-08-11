@@ -79,7 +79,6 @@
 
 /* file form upload section styles  */
 .fileform{
-  position: absolute;
   opacity: 0;
 }
 
@@ -89,7 +88,14 @@
 .convertbtn{
   background: rgba(255, 255, 255, 0.151);
   color: white;
-  border: 1.5px solid rgba(214, 211, 211, 0.637);
+}
+
+.icons{
+  transition: .3s;
+}
+
+.convertbtn:hover .icons{
+  transform: translatex(8px);
 }
 
 .Navigation ul li:hover {
@@ -108,3 +114,32 @@
 .Navigation{
   transition: .3s;
 }
+
+.loading{
+  animation: rotate 1.5s infinite linear;
+}
+
+@keyframes rotate {
+    0%{
+      transform: rotate(360deg);
+    }
+}
+
+
+.hoverline::-webkit-scrollbar{
+  width: 10px;
+  height: 10px;
+
+}
+
+.hoverline::-webkit-scrollbar-thumb{
+  background: gray;
+  border-radius: 10px;
+}
+
+.searchinput:checked{
+  outline: none;
+  border: none;
+
+}
+

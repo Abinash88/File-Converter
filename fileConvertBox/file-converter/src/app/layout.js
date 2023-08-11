@@ -1,7 +1,11 @@
+'use client'
+
 import Header from '@/components/Header'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import {Toaster} from 'react-hot-toast'
+import { useEffect, useState } from 'react';
+import myContext from '@/Reduxfolder/FileTypeContext'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -12,14 +16,51 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+
+  const [loading, setloading] = useState(false);
+  const [gettype, setGettype] = useState(null);
+  const [filestoShow, setfilestoShow] = useState();
+  const GetFilePath = async (files, setfiles) => {
+    setfilestoShow(files)
+    try {
+      const formData = new FormData();
+      formData.append("files", files);
+      setloading(true);
+      const res = await fetch("http://localhost:5000/GetFileData", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (!data.success) return console.error(data.message);
+      setfiles(null);
+      setloading(false);
+      setGettype(data?.fileType);
+    } catch (err) {
+      console.log(err.message);
+      setloading(false);
+      setfiles(null);
+    }
+  };
+
+  const GetFileType =async () => {
+      try{
+        const res = await fetch('http://localhost:5000/GetType',{})
+      }catch(err) {
+        console.log(err.message);
+      }
+  }
+
   return (
     <html lang="en">
       <body className={` `}>
+      <myContext.Provider value={{ GetFilePath, gettype,loading,GetFileType, filestoShow }}>
         <Toaster/>
         <div className="headersection">
           <Header/>
         </div>
         {children}
+        </myContext.Provider>
         </body>
     </html>
   )

@@ -23,6 +23,7 @@
     "multiparty": "^4.2.3",
     "nodemon": "^3.0.1",
     "react-hot-toast": "^2.4.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "uuid": "^9.0.0"
   }
 }
