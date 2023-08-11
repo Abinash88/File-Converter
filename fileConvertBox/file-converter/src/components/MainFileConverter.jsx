@@ -3,12 +3,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowUpTrayIcon, DocumentIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const MainFileConverter = () => {
   const [files, setfiles] = useState();
   const [image, setImage] = useState("");
   const [loading, setloading] = useState(false);
   const [fileType, setFileType] = useState('');
+  const fileref = useRef(null);
 
   const getTheFile = (e) => {
     const file = e.target?.files[0];
@@ -16,13 +18,14 @@ const MainFileConverter = () => {
     setImage(file?.name);
   };
 
+
   const getFileType = (e) => {
     const type = e.target?.value;
     setFileType(type);
   }
-
   // sending file to the api backend server
   const SendFile = async () => {
+    if(files == null) return toast.error('Please select a file')
     setloading(true);
     try {
       const formData = new FormData();
@@ -49,20 +52,29 @@ const MainFileConverter = () => {
         <select
           onChange={getFileType}
           name="filetype"
-          className="selectoption w-[50%] px-4 rounded-md py-2 bg-transparent border border-yellow-400 text-gray-100 outline-none  hover:font-semibold"
+          className="selectoption w-[50%] px-4 rounded-md sm:py-2 py-1 bg-transparent border border-gray-100 text-gray-100 outline-none  hover:font-semibold"
           id="filetypes"
         >
-          <option className="text-gray-600 font-semibold" value="-Select-">
+          <option className="text-gray-600 text-[14px] font-semibold" value="-Select-">
             -Select-
           </option>
-          <option className="text-gray-600 font-semibold" value="JPEG">
+          <option className="text-gray-600 text-[14px] font-semibold" value="JPEG">
             JPEG
           </option>
-          <option className="text-gray-600 font-semibold" value="PNG">
+          <option className="text-gray-600 text-[14px] font-semibold" value="PNG">
             PNG
           </option>
-          <option className="text-gray-600 font-semibold" value="PDF">
+          <option className="text-gray-600 text-[14px] font-semibold" value="PDF">
             PDF
+          </option>
+          <option className="text-gray-600 text-[14px] font-semibold" value="PDF">
+            CSV
+          </option>
+          <option className="text-gray-600 text-[14px] font-semibold" value="PDF">
+              SPLIT
+          </option>
+          <option className="text-gray-600 text-[14px] font-semibold" value="PDF">
+            TXT
           </option>
         </select>
       </div>
@@ -72,6 +84,7 @@ const MainFileConverter = () => {
           <span>
             <form className="absolute flex  items-center w-[25%]  justify-center  fileform h-[80px] top-[0px] left-[38%] h-[90px] ">
               <input
+                ref={fileref}
                 onChange={getTheFile}
                 type="file"
                 name="files"
@@ -85,10 +98,10 @@ const MainFileConverter = () => {
           {image !== "" ? image : "upload file"}
         </h5>
         <button
-          className="mt-5 text-gray-600 px-8 py-3 rounded-md convertbtn "
+          className="mt-5 text-gray-600 sm:px-8 px-6 sm:py-3 py-2 hover:bg-yellow-500 rounded-md convertbtn "
           onClick={SendFile}
         >
-          {loading ? "loading..." : "Convert"}
+          {loading ? "loading..." : "Download"}
         </button>
       </div>
     </div>

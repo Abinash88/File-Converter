@@ -32,6 +32,10 @@
 }
 
 
+.blogpage{
+  background: #31389e;
+}
+
 /* title style section  */
 .herotitle{
   font-family: 'Open Sans', sans-serif;
@@ -99,4 +103,8 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) ;
   grid-auto-rows: 200px;
   justify-items: center;
+}
+
+.Navigation{
+  transition: .3s;
 }

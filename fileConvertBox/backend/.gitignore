@@ -1,0 +1,4 @@
+.env
+/node_modules
+rapidapi.js
+ApiToConvert.js
