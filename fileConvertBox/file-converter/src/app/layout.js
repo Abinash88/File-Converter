@@ -3,7 +3,7 @@
 import Header from '@/components/Header'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import {Toaster} from 'react-hot-toast'
+import { Toaster, toast } from 'react-hot-toast'
 import { useEffect, useState } from 'react';
 import myContext from '@/Reduxfolder/FileTypeContext'
 
@@ -18,11 +18,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
 
   const [loading, setloading] = useState(false);
+  // conversion fetch second code loading usestate \
+  const [ConversionLoading, setConversionLoading] = useState(false);
   const [gettype, setGettype] = useState(null);
   // setting the file name to show in the frontend
   const [filestoShow, setfilestoShow] = useState();
-  // capturing the old filepath of backend for the seconed time
+  // capturing the old filepath of backend for the seconed time fetching to file conversion
   const [Oldfile, setOldfile] = useState('');
+  // setting the download file for downloading the file in the user device
+  const [downloadFile, setDownloadFile] = useState('');
 
   // run another fetch function for conversion of file 
   const GetFilePath = async (files, setfiles) => {
@@ -51,39 +55,59 @@ export default function RootLayout({ children }) {
   };
 
 
-  const FetchDownload =async (filetype, Oldfile) => {
-      try{
-        const res = await fetch(`http://localhost:5000/FetchDownload`,{
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json', 
-            },
-            body:JSON.stringify({
-              filetype,
-              filepath:Oldfile
-            })
-        });
+  const FetchDownload = async (filetype, Oldfile) => {
+    setConversionLoading(true);
+    try {
+      const res = await fetch(`http://localhost:5000/FetchDownload`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          filetype,
+          filepath: Oldfile
+        })
+      });
 
-        const data = await res.json();
-        if(!data.success ) console.log(data.message);
-        console.log(data);
-      }catch(err) {
-        console.log(err.message);
-      }
+      const data = await res.json();
+      if (!data.success) {console.log(data.message)
+        toast.error(data.message);
+      };
+      setDownloadFile(data?.localfile);
+      setConversionLoading(false);
+      console.log(data);
+    } catch (err) {
+      console.log(err.message);
+      setConversionLoading(false);
+    }
+  }
+
+  const DownLoadFile = async (Oldfile) => {
+    try{
+      const res = await fetch(`http://localhost:5000/Download/${Oldfile}`,{
+        method: 'GET',
+      })
+
+      const data = await res.json();
+      if(!data.success) console.error(data.message);
+      console.log(data.message);
+    }catch(err) {
+      console.log(err.message);
+    }
   }
 
 
   return (
     <html lang="en">
       <body className={` `}>
-      <myContext.Provider value={{ GetFilePath, gettype,loading,FetchDownload, filestoShow, Oldfile }}>
-        <Toaster/>
-        <div className="headersection">
-          <Header/>
-        </div>
-        {children}
+        <myContext.Provider value={{ GetFilePath, gettype, loading, FetchDownload, filestoShow, Oldfile, DownLoadFile, ConversionLoading }}>
+          <Toaster />
+          <div className="headersection">
+            <Header />
+          </div>
+          {children}
         </myContext.Provider>
-        </body>
+      </body>
     </html>
   )
 }

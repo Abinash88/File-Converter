@@ -26,6 +26,9 @@ FetchDownloadFile.post('/FetchDownload', (req, res) => {
             // console.log(formData.source_file)\
             console.log('SUCCESS! Conversion job started:', JSON.parse(body));
             const poll = JSON.parse(body);
+            if(poll.errors) {
+                res.status(500).json({success: false, message: poll.errors[0].message})
+            }
             let jobID = poll.id
             pollJobStatuss(jobID)
         }
@@ -60,7 +63,7 @@ FetchDownloadFile.post('/FetchDownload', (req, res) => {
     }
 
 
-    const downloadConvertedFile = (fileID) => {
+    const downloadConvertedFile =async (fileID) => {
 
         request.get({ url: `https://sandbox.zamzar.com/v1/files/${fileID}/content`, followRedirect: false }, function (err, response, body) {
             if (err) {
@@ -81,9 +84,9 @@ FetchDownloadFile.post('/FetchDownload', (req, res) => {
         }).auth(apiKey, 'Zamzar@854no', true).pipe(fs.createWriteStream(localfile));
 
         
+        res.status(200).json({success: true, message:"successfully created converted file",localfile});
     }
     
-    res.status(200).json({success: true, message:"successfully created converted file",localfile});
 
 })
 
