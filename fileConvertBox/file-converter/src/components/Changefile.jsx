@@ -10,18 +10,20 @@ import React, { useContext, useEffect, useState } from "react";
 import FileTypeListItem from "./FileTypeListItem";
 
 const Changefile = () => {
-  const { GetFilePath, gettype, loading, filestoShow } = useContext(myContext);
+  const { GetFilePath, gettype, loading, filestoShow, FetchDownload, Oldfile } = useContext(myContext);
   const [Toggle, setToggle] = useState(false);
   const [GetType, setGetType] = useState();
 
 
   const SendFileTypeToChange = (filetype) => {
+    // setting the toggle for the filetype chooser box 
     setToggle(false)
+    // setting type of file for showing the name of file 
     setGetType(filetype);
-
-    
+    // calling the fetch download function in the layout component 
+    FetchDownload(filetype, Oldfile);
   }
-
+    // code for search filetype from the filetype chooser box 
   const searchInput = (e) => {
     const text = e.target.value;
     console.log(text);  
@@ -32,7 +34,6 @@ const Changefile = () => {
     setToggle(!Toggle)
   }
 
-  console.log(gettype)
   return (
     <div className="w-full h-full ">
       <div className="filetype flex px-6 items-center justify-between bg-gray-700 mx-auto w-[90%] rounded-md h-[50%]">
@@ -56,7 +57,6 @@ const Changefile = () => {
               <div  className={`w-full h-[80%] hoverline overflow-auto`}>
                 {
                   gettype?.map((item) => {
-                    console.log(item);
                     return (
                       <FileTypeListItem item={item} SendFileTypeToChange={SendFileTypeToChange}/>
                     )

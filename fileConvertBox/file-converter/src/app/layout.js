@@ -19,7 +19,12 @@ export default function RootLayout({ children }) {
 
   const [loading, setloading] = useState(false);
   const [gettype, setGettype] = useState(null);
+  // setting the file name to show in the frontend
   const [filestoShow, setfilestoShow] = useState();
+  // capturing the old filepath of backend for the seconed time
+  const [Oldfile, setOldfile] = useState('');
+
+  // run another fetch function for conversion of file 
   const GetFilePath = async (files, setfiles) => {
     setfilestoShow(files)
     try {
@@ -35,6 +40,8 @@ export default function RootLayout({ children }) {
       if (!data.success) return console.error(data.message);
       setfiles(null);
       setloading(false);
+      setOldfile(data?.filepath)
+      console.log(data);
       setGettype(data?.fileType);
     } catch (err) {
       console.log(err.message);
@@ -43,18 +50,33 @@ export default function RootLayout({ children }) {
     }
   };
 
-  const GetFileType =async () => {
+
+  const FetchDownload =async (filetype, Oldfile) => {
       try{
-        const res = await fetch('http://localhost:5000/GetType',{})
+        const res = await fetch(`http://localhost:5000/FetchDownload`,{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json', 
+            },
+            body:JSON.stringify({
+              filetype,
+              filepath:Oldfile
+            })
+        });
+
+        const data = await res.json();
+        if(!data.success ) console.log(data.message);
+        console.log(data);
       }catch(err) {
         console.log(err.message);
       }
   }
 
+
   return (
     <html lang="en">
       <body className={` `}>
-      <myContext.Provider value={{ GetFilePath, gettype,loading,GetFileType, filestoShow }}>
+      <myContext.Provider value={{ GetFilePath, gettype,loading,FetchDownload, filestoShow, Oldfile }}>
         <Toaster/>
         <div className="headersection">
           <Header/>
