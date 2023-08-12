@@ -4,13 +4,11 @@ const path = require('path');
 const fs = require('fs');
 
 DownloadFile.get('/Download', (req, res) => {
-    // const downloadpath = req?.query.Oldfile;
-    const downloadpath = './public/1691828474515.png';
-    console.log(path.join(__dirname, downloadpath));
+    const downloadpath = req?.query.Oldfile;
+    console.log(downloadpath);
     res.download(downloadpath, (err) =>  {
         if(err) return res.status(404).json({success:false, message:err.message});
-        console.log(downloadpath)
-        // fs.unlink(downloadpath, () => {})
+        fs.unlink(downloadpath, () => {})
     })
 
 })

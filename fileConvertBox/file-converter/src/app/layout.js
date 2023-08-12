@@ -7,6 +7,7 @@ import { Toaster, toast } from 'react-hot-toast'
 import { useEffect, useState } from 'react';
 import myContext from '@/CreateContext/FileTypeContext'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,6 +18,8 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+
+  const router = useRouter()
   // loading for the  file uploader
   const [loading, setloading] = useState(false);
 
@@ -61,20 +64,17 @@ export default function RootLayout({ children }) {
       setfiles(null);
     }
   };
-
   // fetch for getting conversion the file 
   const FetchDownload = async (filetype, Oldfile) => {
     setConversionLoading(true);
+    console.log(filetype, Oldfile);
     try {
       const res = await fetch(`http://localhost:5000/FetchDownload`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
           filetype,
           filepath: Oldfile
-        })
+        },
       });
 
       const data = await res.json();
@@ -93,23 +93,22 @@ export default function RootLayout({ children }) {
 
 
   // fetch for downloading the files
-  const DownLoadFile = async (Oldfile) => {
-    const querystring = `?Oldfile=${encodeURIComponent(Oldfile)}`
-    const data = Oldfile.split('.');
+  const DownLoadFile = async (DownLoadFile) => {
+    const querystring = `?Oldfile=${encodeURIComponent(DownLoadFile)}`;
+    const data = DownLoadFile.split('.');
     const outputfileType = data[data.length - 1];
-    console.log(outputfileType)
     try {
-      const res = await axios.get(`http://localhost:5000/Download`, {
+      const res = await axios.get(`http://localhost:5000/Download${querystring}`, {
         responseType:'blob',
       })
-      console.log(res.data)
-      const blob = new Blob([res.data]);
+      const blob = new Blob([res.data],{type:res.data.type});
       const downloadurl = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = downloadurl
-      a.download = `converted.${'png'}`
-      a.click;
-      // URL.revokeObjectURL(downloadurl)
+      a.download = `${Date.now()}.${outputfileType}`
+      a.click();
+      URL.revokeObjectURL(downloadurl)
+      setGettype(null);
     } catch (err) {
       console.log(err.message, 'error downloading');
     }

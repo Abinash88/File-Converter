@@ -7,9 +7,9 @@ const FetchDownloadFile = require('./routes/FetchDownloadFile');
 const DownloadFile = require('./routes/DownloadFile');
 
 app.use(express.static('uploads'))
-// app.use(express.json());
+app.use(express.json());
 app.use(cors({origin:'http://localhost:3000'}));
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false, limit:'10mb'}))
 
 app.use(SetFile)
 app.use(FetchDownloadFile)

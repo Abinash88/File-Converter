@@ -7,12 +7,14 @@ const FetchDownloadFile = express.Router();
 
 FetchDownloadFile.post('/FetchDownload', (req, res) => {
 
-    const filetype = req?.body?.filetype
-    const filepath = req?.body?.filepath
-    
+    const filetype = req?.headers?.filetype
+    const filepath = req?.headers?.filepath
+    console.log(filepath, filetype)    
+
     if(!filetype && !filepath) {
-        res.status(404).json({success:false, message:''})
+        res.status(404).json({success:false, message:'File type and file path missing'})
     }
+
     const localfile = `./public/${Date.now()}.${filetype?.toLowerCase()}`
     const formData = {
         target_format: filetype,
@@ -65,7 +67,7 @@ FetchDownloadFile.post('/FetchDownload', (req, res) => {
     }
 
 
-    const downloadConvertedFile =async (fileID) => {
+    const downloadConvertedFile = (fileID) => {
 
         request.get({ url: `https://sandbox.zamzar.com/v1/files/${fileID}/content`, followRedirect: false }, function (err, response, body) {
             if (err) {
@@ -84,11 +86,12 @@ FetchDownloadFile.post('/FetchDownload', (req, res) => {
                 }
             }
         }).auth(apiKey, 'Zamzar@854no', true).pipe(fs.createWriteStream(localfile));
-        fs.unlink('./uploads/',filepath)        
+        fs.unlink(filepath,(err) => {
+            console.log(err, 'error from unlinking file');
+        })        
         res.status(200).json({success: true, message:"successfully created converted file", localfile});
     }
     
-
 })
 
 
