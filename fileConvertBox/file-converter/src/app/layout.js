@@ -6,6 +6,7 @@ import { Inter } from 'next/font/google'
 import { Toaster, toast } from 'react-hot-toast'
 import { useEffect, useState } from 'react';
 import myContext from '@/CreateContext/FileTypeContext'
+import axios from 'axios'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -93,25 +94,30 @@ export default function RootLayout({ children }) {
 
   // fetch for downloading the files
   const DownLoadFile = async (Oldfile) => {
+    const querystring = `?Oldfile=${encodeURIComponent(Oldfile)}`
+    const data = Oldfile.split('.');
+    const outputfileType = data[data.length - 1];
+    console.log(outputfileType)
     try {
-      const res = await fetch(`http://localhost:5000/Download`, {
-        method: 'GET',
-        headers:{
-          Oldfile,
-        }
+      const res = await axios.get(`http://localhost:5000/Download`, {
+        responseType:'blob',
       })
-
-      const data = await res.json();
-      if (!data.success) console.error(data.message);
-      console.log(data.message);
+      console.log(res.data)
+      const blob = new Blob([res.data]);
+      const downloadurl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = downloadurl
+      a.download = `converted.${'png'}`
+      a.click;
+      // URL.revokeObjectURL(downloadurl)
     } catch (err) {
-      console.log(err.message);
+      console.log(err.message, 'error downloading');
     }
   }
 
+
   const handlefile = (type) => {
     console.log(type)
-    
   }
 
 

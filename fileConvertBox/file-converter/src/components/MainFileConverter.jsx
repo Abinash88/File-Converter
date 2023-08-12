@@ -22,14 +22,13 @@ const MainFileConverter = () => {
     fileref.current.click();
   }
 
-  const data = './routes/download/'
-  const request = data.split('./routes');
-  console.log(request.join(''));
-
   return (
     <div className="converterBox   w-full flex items-center justify-center flex-col h-full ">
       <div className="uploadfile relative flex-col w-full h-[70%] flex items-center justify-center">
-       { gettype === null ?
+       {
+      //  gettype === null 
+      false
+       ?
        <div className="uploadbox bg-gray-400 cursor-pointer flex-col space-y-2 w-[200px] h-[100px] flex items-center justify-center  rounded-md">
             <h2 className="text-yellow-400 font-semibold text-[19px]"> Choose File</h2>
           <div>
