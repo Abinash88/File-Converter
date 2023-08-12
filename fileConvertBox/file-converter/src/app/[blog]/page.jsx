@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Blog = () => {
+const page = () => {
   return (
     <div className='w-full h-[100vh]'>
         <div className="h-[40vh] flex pt-10 flex-col justify-start items-center blogpage">
@@ -11,4 +11,4 @@ const Blog = () => {
   )
 }
 
-export default Blog
+export default page

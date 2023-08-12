@@ -16,15 +16,21 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-
+  // loading for the  file uploader
   const [loading, setloading] = useState(false);
+
   // conversion fetch second code loading usestate \
   const [ConversionLoading, setConversionLoading] = useState(false);
+
+  // getting the file type 
   const [gettype, setGettype] = useState(null);
+
   // setting the file name to show in the frontend
   const [filestoShow, setfilestoShow] = useState();
+
   // capturing the old filepath of backend for the seconed time fetching to file conversion
   const [Oldfile, setOldfile] = useState('');
+
   // setting the download file for downloading the file in the user device
   const [downloadFile, setDownloadFile] = useState('');
 
@@ -32,6 +38,7 @@ export default function RootLayout({ children }) {
   const GetFilePath = async (files, setfiles) => {
     setfilestoShow(files)
     try {
+      // putting  file in the formdata 
       const formData = new FormData();
       formData.append("files", files);
       setloading(true);
@@ -54,7 +61,7 @@ export default function RootLayout({ children }) {
     }
   };
 
-// fetch for getting conversion the file 
+  // fetch for getting conversion the file 
   const FetchDownload = async (filetype, Oldfile) => {
     setConversionLoading(true);
     try {
@@ -70,7 +77,8 @@ export default function RootLayout({ children }) {
       });
 
       const data = await res.json();
-      if (!data.success) {console.log(data.message)
+      if (!data.success) {
+        console.log(data.message)
         toast.error(data.message);
       };
       setDownloadFile(data?.localfile);
@@ -83,26 +91,34 @@ export default function RootLayout({ children }) {
   }
 
 
-// fetch for downloading the files
+  // fetch for downloading the files
   const DownLoadFile = async (Oldfile) => {
-    try{
-      const res = await fetch(`http://localhost:5000/Download/${Oldfile}`,{
+    try {
+      const res = await fetch(`http://localhost:5000/Download`, {
         method: 'GET',
+        headers:{
+          Oldfile,
+        }
       })
 
       const data = await res.json();
-      if(!data.success) console.error(data.message);
+      if (!data.success) console.error(data.message);
       console.log(data.message);
-    }catch(err) {
+    } catch (err) {
       console.log(err.message);
     }
+  }
+
+  const handlefile = (type) => {
+    console.log(type)
+    
   }
 
 
   return (
     <html lang="en">
       <body className={` `}>
-        <myContext.Provider value={{ GetFilePath, gettype, loading, FetchDownload, filestoShow, Oldfile, DownLoadFile, ConversionLoading }}>
+        <myContext.Provider value={{ GetFilePath, gettype, loading, FetchDownload, filestoShow, Oldfile, DownLoadFile, ConversionLoading, handlefile, downloadFile }}>
           <Toaster />
           <div className="headersection">
             <Header />

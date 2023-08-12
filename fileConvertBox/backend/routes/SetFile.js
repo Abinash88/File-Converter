@@ -6,18 +6,16 @@ const apiKey = '33ef1db71f05c00a307ab785de4fcc318ffd1a88';
 
 
 
-
-
 SetFile.post('/GetFileData', upload.single('files'), async (req, res) => {
     if (req.method !== 'POST') return res.json(400).json({ success: false, message: 'POST method only suppourted!' });
     const file = req.file
     // console.log(file,'file')
-    const filepath = file.path;
-    const findtype = file.path.split('.');
-    const lasttype = findtype[findtype.length - 1]
+    const filepath = file?.path;
+    const findtype = file?.path?.split('.');
+    const lasttype = findtype[findtype?.length - 1]
 
     // generating the formats of files
-    request.get(`https://sandbox.zamzar.com/v1/formats/${lasttype.toLocaleLowerCase()}`, function (err, response, body) {
+    request.get(`https://sandbox.zamzar.com/v1/formats/${lasttype?.toLocaleLowerCase()}`, function (err, response, body) {
         if (err) {
             console.error('Unable to get formats', err);
         } else {

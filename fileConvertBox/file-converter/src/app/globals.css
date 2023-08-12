@@ -12,6 +12,10 @@
   color: #ffbd15;
 }
 
+.fotterp{
+  line-height: 28px;
+}
+
 .logolink{
   display: flex;
 }
@@ -22,18 +26,18 @@
 }
 
 .herosection{
-  background: #31389e;
+  background: #3504a8f5;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
 }
 
 .topheader{
-  background: #31389e;
+  background: #3504a8f5;
 }
 
 
 .blogpage{
-  background: #31389e;
+  background: #3504a8f5;
 }
 
 /* title style section  */
@@ -102,6 +106,33 @@
   color: #ffbd15;
 }
 
+.ullist li{
+  position: relative;
+  padding: 6px 0;
+}
+
+.ullist li::after{
+  content: '';
+  width: 0px;
+  height: 2px;
+  background-color: #ffbd15;
+  position: absolute;
+  left: 19px;
+  bottom: 0;
+  transition: .3s;
+}
+
+
+.ullist li:hover::after{
+  content: '';
+  width: 30px;
+  height: 2px;
+  background-color: #ffbd15;
+  position: absolute;
+  left: 19px;
+  bottom: 0;
+}
+
 
 /* more file converter gird box styles  */
 .moreconvertbox{
@@ -143,3 +174,6 @@
 
 }
 
+.fotter{
+  background-color: #ffffff;
+}

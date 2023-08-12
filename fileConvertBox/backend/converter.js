@@ -5,6 +5,7 @@ const port = process.env.PORT || 5000
 const path = require('path');
 const SetFile = require('./routes/SetFile');
 const FetchDownloadFile = require('./routes/FetchDownloadFile');
+const DownloadFile = require('./routes/DownloadFile');
 
 
 app.use(cors({origin:'http://localhost:3000'}));
@@ -13,7 +14,7 @@ app.use(express.urlencoded({limit:"10mb", extended:false}))
 
 app.use(SetFile)
 app.use(FetchDownloadFile)
-
+app.use(DownloadFile)
 
 
 app.listen(port, () => {

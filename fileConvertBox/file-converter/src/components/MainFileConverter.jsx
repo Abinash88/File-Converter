@@ -17,9 +17,14 @@ const MainFileConverter = () => {
     setfiles(file);
      GetFilePath(file, setfiles);
   };
-
-
   
+  const handlefile = () => {
+    fileref.current.click();
+  }
+
+  const data = './routes/download/'
+  const request = data.split('./routes');
+  console.log(request.join(''));
 
   return (
     <div className="converterBox   w-full flex items-center justify-center flex-col h-full ">

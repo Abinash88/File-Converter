@@ -19,6 +19,7 @@ const Changefile = () => {
     Oldfile,
     DownLoadFile,
     ConversionLoading,
+    downloadFile
   } = useContext(myContext);
   const [Toggle, setToggle] = useState(false);
   const [GetType, setGetType] = useState();
@@ -50,7 +51,7 @@ const Changefile = () => {
   // function for downloading the file
   const downloadingFile = () => {
     // downloadFile is a file name for downloading the file in the backend
-    DownLoadFile(Oldfile);
+    DownLoadFile(downloadFile);
   };
 
   return (
@@ -110,7 +111,7 @@ const Changefile = () => {
         </div>
       </div>
       <div className=" w-full  flex justify-center">
-        <button className="mt-5 text-gray-600 sm:px-8 px-10 sm:py-3 py-2 rounded-md convertbtn flex space-x-3 items-center ">
+        <button onClick={downloadingFile} className="mt-5 text-gray-600 sm:px-8 px-10 sm:py-3 py-2 rounded-md convertbtn flex space-x-3 items-center ">
           <span> Download</span>
           <ArrowRightIcon className="h-6 icons" />
         </button>

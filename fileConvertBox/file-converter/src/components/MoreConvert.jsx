@@ -1,4 +1,5 @@
 // import { DocumentChartBarIcon, DocumentCheckIcon, DocumentIcon,DocumentTimeline, DocumentType, DocumentFragment } from "@heroicons/react/24/solid";
+import myContext from "@/CreateContext/FileTypeContext";
 import {
   DocumentArrowDownIcon,
   DocumentChartBarIcon,
@@ -7,17 +8,20 @@ import {
   DocumentMinusIcon,
   DocumentTextIcon,
 } from "@heroicons/react/24/solid";
-import React from "react";
+import React, { useContext } from "react";
 
-const MoreConvert = ({ handlefile }) => {
+const MoreConvert = () => {
+
+  const {handlefile} = useContext(myContext);
+
   return (
     <div id="moreConvert" className="w-full  h-full">
       <div className="w-[80%] mx-auto  ">
         <div className="pt-[50px]">
           <h2 className="sm:text-[36px] text-[29px] font-bold text-slate-600 text-center">
-            More File Converter
+            More File Type Converter
           </h2>
-          <p className="text-center mt-4 text-gray-500 text-[15px] sm:text-[17px]">
+          <p className="text-center mt-4 font-semibold text-gray-500 text-[15px] sm:text-[17px]">
             Convert your file to any format.
           </p>
         </div>
