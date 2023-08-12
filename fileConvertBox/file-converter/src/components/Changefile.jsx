@@ -1,6 +1,6 @@
 "use client";
 
-import myContext from "@/Reduxfolder/FileTypeContext";
+import myContext from "@/CreateContext/FileTypeContext";
 import {
   ArrowRightIcon,
   ChevronDownIcon,

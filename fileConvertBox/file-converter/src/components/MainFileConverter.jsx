@@ -2,7 +2,7 @@
 
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { ArrowPathIcon, ArrowUpTrayIcon, DocumentIcon } from "@heroicons/react/24/solid";
-import myContext from "@/Reduxfolder/FileTypeContext";
+import myContext from "@/CreateContext/FileTypeContext";
 import Changefile from "./Changefile";
 
 const MainFileConverter = () => {
@@ -10,12 +10,17 @@ const MainFileConverter = () => {
   const [image, setImage] = useState("");
   const fileref = useRef(null);
   const { GetFilePath, gettype, loading} = useContext(myContext)
+  
   // post request to send the file or image
-  const getTheFile = async (e) => {
+  const getTheFile =  (e) => {
     const file = e.target?.files[0];
     setfiles(file);
-    await GetFilePath(file, setfiles)
+     GetFilePath(file, setfiles);
   };
+
+
+  
+
   return (
     <div className="converterBox   w-full flex items-center justify-center flex-col h-full ">
       <div className="uploadfile relative flex-col w-full h-[70%] flex items-center justify-center">

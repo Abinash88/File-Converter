@@ -23,81 +23,81 @@ const MoreConvert = ({ handlefile }) => {
         </div>
         <div className="w-full moreconvertbox h-full mt-[50px]">
           <div
-            onClick={() => handlefile("PDF")}
-            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2"
+            onClick={() => handlefile("DOC")}
+            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center text-center space-y-2"
           >
-            <DocumentIcon className="h-12 text-yellow-500" />
-            <p className="text-yellow-500 font-semibold">JPG TO PDF</p>
+            <DocumentArrowDownIcon className="h-12  text-yellow-500" />
+            <p className="text-yellow-500 font-semibold"> PDF TO DOC</p>
           </div>
 
           <div
             onClick={() => handlefile("PDF")}
-            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2"
+            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center text-center space-y-2"
           >
-            <DocumentTextIcon className="h-12 text-yellow-500" />
-            <p className="text-yellow-500 font-semibold">JPG TO DODC</p>
+            <DocumentArrowDownIcon className="h-12  text-yellow-500" />
+            <p className="text-yellow-500 font-semibold"> DODC TO PDF</p>
           </div>
 
           <div
             onClick={() => handlefile("PDF")}
-            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2"
+            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center text-center space-y-2"
           >
-            <DocumentChartBarIcon className="h-12 text-yellow-500" />
-            <p className="text-yellow-500 font-semibold">JPG TO DOC</p>
+            <DocumentArrowDownIcon className="h-12  text-yellow-500" />
+            <p className="text-yellow-500 font-semibold">HTML TO PDF</p>
+          </div>
+
+          <div
+            onClick={() => handlefile("HTML")}
+            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center text-center space-y-2"
+          >
+            <DocumentArrowDownIcon className="h-12  text-yellow-500" />
+            <p className="text-yellow-500 font-semibold">PDF TO HTML</p>
           </div>
 
           <div
             onClick={() => handlefile("PDF")}
-            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2"
+            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center text-center space-y-2"
           >
-            <DocumentArrowDownIcon className="h-12 text-yellow-500" />
-            <p className="text-yellow-500 font-semibold">JPG TO PDF</p>
+            <DocumentArrowDownIcon className="h-12  text-yellow-500" />
+            <p className="text-yellow-500 font-semibold">EXCEL TO PDF</p>
           </div>
 
           <div
             onClick={() => handlefile("PDF")}
-            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2"
+            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center text-center space-y-2"
           >
-            <DocumentCheckIcon className="h-12 text-yellow-500" />
-            <p className="text-yellow-500 font-semibold">JPG TO PDF</p>
+            <DocumentArrowDownIcon className="h-12  text-yellow-500" />
+            <p className="text-yellow-500 font-semibold">WORD TO PDF</p>
+          </div>
+          <div
+            onClick={() => handlefile("WORD")}
+            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center text-center space-y-2"
+          >
+            <DocumentArrowDownIcon className="h-12  text-yellow-500" />
+            <p className="text-yellow-500 font-semibold"> PDF TO WORD</p>
+          </div>
+          <div
+            onClick={() => handlefile("POWERPOINT")}
+            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center text-center space-y-2"
+          >
+            <DocumentArrowDownIcon className="h-12  text-yellow-500" />
+            <p className="text-yellow-500 font-semibold"> PDF TO POWERPOINT</p>
           </div>
 
           <div
-            onClick={() => handlefile("PDF")}
-            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2"
+            onClick={() => handlefile("EXCEL")}
+            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center text-center space-y-2"
           >
-            <DocumentMinusIcon className="h-12 text-yellow-500" />
-            <p className="text-yellow-500 font-semibold">JPG TO PDF</p>
-          </div>
-          <div
-            onClick={() => handlefile("PDF")}
-            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2"
-          >
-            <DocumentMinusIcon className="h-12 text-yellow-500" />
-            <p className="text-yellow-500 font-semibold">JPG TO PDF</p>
-          </div>
-          <div
-            onClick={() => handlefile("PDF")}
-            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2"
-          >
-            <DocumentMinusIcon className="h-12 text-yellow-500" />
-            <p className="text-yellow-500 font-semibold">JPG TO PDF</p>
+            <DocumentArrowDownIcon className="h-12  text-yellow-500" />
+            <p className="text-yellow-500 font-semibold"> PDF TO EXCEL</p>
           </div>
 
           <div
-            onClick={() => handlefile("PDF")}
-            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2"
+            onClick={() => handlefile("DODC")}
+            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center text-center space-y-2"
           >
-            <DocumentMinusIcon className="h-12 text-yellow-500" />
-            <p className="text-yellow-500 font-semibold">JPG TO PDF</p>
-          </div>
-
-          <div
-            onClick={() => handlefile("PDF")}
-            className="flex flex-col cursor-pointer hover:bg-yellow-200 bg-yellow-100 w-[130px] rounded-md h-[130px] justify-center items-center space-y-2"
-          >
-            <DocumentMinusIcon className="h-12 text-yellow-500" />
-            <p className="text-yellow-500 font-semibold">JPG TO PDF</p>
+            <DocumentArrowDownIcon className="h-12  text-yellow-500" />
+            <p className="text-yellow-500 font-semibold"> PDF TO DODC</p>
           </div>
         </div>
       </div>

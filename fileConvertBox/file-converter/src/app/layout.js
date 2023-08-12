@@ -5,7 +5,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { Toaster, toast } from 'react-hot-toast'
 import { useEffect, useState } from 'react';
-import myContext from '@/Reduxfolder/FileTypeContext'
+import myContext from '@/CreateContext/FileTypeContext'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
     }
   };
 
-
+// fetch for getting conversion the file 
   const FetchDownload = async (filetype, Oldfile) => {
     setConversionLoading(true);
     try {
@@ -82,6 +82,8 @@ export default function RootLayout({ children }) {
     }
   }
 
+
+// fetch for downloading the files
   const DownLoadFile = async (Oldfile) => {
     try{
       const res = await fetch(`http://localhost:5000/Download/${Oldfile}`,{
