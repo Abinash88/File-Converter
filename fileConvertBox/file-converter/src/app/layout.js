@@ -95,16 +95,15 @@ export default function RootLayout({ children }) {
   // fetch for downloading the files
   const DownLoadFile = async (DownLoadFile) => {
     const querystring = `?Oldfile=${encodeURIComponent(DownLoadFile)}`;
-    const data = DownLoadFile.split('.');
+    const data = downloadFile.split('.');
     const outputfileType = data[data.length - 1];
     try {
-      const res = await axios.get(`http://localhost:5000/Download${querystring}`, {
-        responseType:'blob',
-      })
+      const res = await axios.get(`http://localhost:5000/Download${querystring}`)
       const blob = new Blob([res.data],{type:res.data.type});
+
       const downloadurl = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = downloadurl
+      a.href = downloadurl;
       a.download = `${Date.now()}.${outputfileType}`
       a.click();
       URL.revokeObjectURL(downloadurl)
@@ -123,7 +122,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={` `}>
-        <myContext.Provider value={{ GetFilePath, gettype, loading, FetchDownload, filestoShow, Oldfile, DownLoadFile, ConversionLoading, handlefile, downloadFile }}>
+        <myContext.Provider value={{ GetFilePath, gettype, setGettype, loading, FetchDownload, filestoShow, Oldfile, DownLoadFile, ConversionLoading, handlefile, downloadFile }}>
           <Toaster />
           <div className="headersection">
             <Header />

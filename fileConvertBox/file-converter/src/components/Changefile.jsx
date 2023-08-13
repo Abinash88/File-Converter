@@ -56,17 +56,17 @@ const Changefile = () => {
 
   return (
     <div className="w-full h-full ">
-      <div className="filetype flex px-6 items-center justify-between bg-gray-700 mx-auto w-[90%] rounded-md h-[50%]">
+      <div className="filetype flex px-6 items-center sm:flex-row flex-col py-2 justify-between bg-gray-700 mx-auto w-[90%] rounded-md h-[70%] sm:h-[50%]">
         <div className="flex space-x-4">
           <PhotoIcon className="h-7 text-green-400" />
-          <p className="text-gray-200 font-semibold text-[15px]">
+          <p className="text-gray-200 font-semibold text-[14px] sm:text-[15px]">
             {" "}
             {filestoShow?.name}
           </p>
         </div>
 
         <p className="text-gray-100 bg-green-600 font-semibold px-2 rounded-md">
-          {GetType ? `${getTheType(Oldfile)} To ${GetType}` : null}
+          {GetType ? `${getTheType(Oldfile)} To ${GetType}` : null}aefasdfas
         </p>
 
         <div className="">
@@ -85,7 +85,7 @@ const Changefile = () => {
           <div
             className={`icontype absolute  ${
               Toggle ? "" : "hidden"
-            } w-[300px] h-[300px] top-[-230px] right-[150px] rounded-md  bg-gray-200`}
+            } w-[300px] h-[300px] top-[-230px] right-[90px] sm:right-[150px] rounded-md  bg-gray-200`}
           >
             <div className="w-full h-[20%] flex items-center">
               <input

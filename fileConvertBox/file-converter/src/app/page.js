@@ -21,7 +21,7 @@ export default function Home() {
               </p>
             </div>
             <div className="w-full h-full flex items-center justify-center">
-              <div className="main_file_converter_box w-[650px] rounded-md  h-[230px]">
+              <div className="main_file_converter_box w-[700px] rounded-md h-[300px]  sm:h-[230px]">
                 <MainFileConverter />
               </div>
             </div>

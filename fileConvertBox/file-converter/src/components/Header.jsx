@@ -39,17 +39,17 @@ const Header = () => {
               </Link>
               <p className="text-yellow-400">File Converter</p>
             </h5>
-            <li className="sm:text-[14px] text-[15px]  sm:text-gray-100 sm:w-auto w-full  py-2 sm:py-0  text-gray-600 font-semibold text-slate-200 ">
+            <li onClick={() => setIsHover(false)} className="sm:text-[14px] text-[15px]  sm:text-gray-100 sm:w-auto w-full  py-2 sm:py-0  text-gray-600 font-semibold text-slate-200 ">
               <Link className="px-4 py-1" href={"/"}>
                 Home
               </Link>
             </li>
-            <li className="sm:text-[14px] text-[15px]  sm:text-gray-100 sm:w-auto w-full  py-2 sm:py-0  text-gray-600 font-semibold text-slate-200 ">
+            <li onClick={() => setIsHover(false)} className="sm:text-[14px] text-[15px]  sm:text-gray-100 sm:w-auto w-full  py-2 sm:py-0  text-gray-600 font-semibold text-slate-200 ">
               <Link className="px-4 py-1" href={"/Blog"}>
                 Blog
               </Link>
             </li>
-            <li className="sm:text-[14px] text-[15px]  sm:text-gray-100 sm:w-auto w-full  py-2 sm:py-0  text-gray-600 font-semibold text-slate-200 ">
+            <li onClick={() => setIsHover(false)} className="sm:text-[14px] text-[15px]  sm:text-gray-100 sm:w-auto w-full  py-2 sm:py-0  text-gray-600 font-semibold text-slate-200 ">
               <Link className="px-4 py-1" href={"/#moreConvert"}>
                 {" "}
                 More  
