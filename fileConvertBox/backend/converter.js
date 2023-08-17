@@ -5,6 +5,7 @@ const port = process.env.PORT || 5000
 const SetFile = require('./routes/SetFile');
 const FetchDownloadFile = require('./routes/FetchDownloadFile');
 const DownloadFile = require('./routes/DownloadFile');
+const DeleteUploads = require('./routes/DeleteUploads');
 
 app.use(express.static('uploads'))
 app.use(express.json());
@@ -14,7 +15,7 @@ app.use(express.urlencoded({extended:false, limit:'10mb'}))
 app.use(SetFile)
 app.use(FetchDownloadFile)
 app.use(DownloadFile)
-
+app.use(DeleteUploads);
 
 
 

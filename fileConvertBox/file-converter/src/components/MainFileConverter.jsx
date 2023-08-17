@@ -14,7 +14,7 @@ const MainFileConverter = () => {
   const [files, setfiles] = useState(null);
   const [image, setImage] = useState("");
   const fileref = useRef(null);
-  const { GetFilePath, gettype, loading, setGettype } = useContext(myContext);
+  const { GetFilePath, gettype, loading, setGettype, Oldfile } = useContext(myContext);
 
   // post request to send the file or image
   const getTheFile = (e) => {
@@ -27,13 +27,25 @@ const MainFileConverter = () => {
     fileref.current.click();
   };
 
+  const DeleteTheUploads = async() => {
+      setGettype(null);
+      const queryfile = `?oldfile=${Oldfile}`
+      try{
+         await fetch(`http://localhost:5000/DeleteUpload${queryfile}`,{
+          method:'GET',
+        })
+      }catch(err) {
+        console.log(err.message)
+      }
+  }
+
   return (
     <div className="converterBox   w-full flex items-center justify-center flex-col h-full ">
       <div className={`w-full ] ${
             gettype !== null ? "" : "hidden"
           }`}>
         <button
-          onClick={() => setGettype(null)}
+          onClick={DeleteTheUploads}
           className={`text-[15px   mb-3 font-semibold bg-gray-600 ml-6 hover:bg-gray-700 text-white sm:px-3 px-2 sm:py-2 py-1 rounded-md`}
         >
           <ArrowLongLeftIcon className="h-7"/>

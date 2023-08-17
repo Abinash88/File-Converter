@@ -1,97 +1,31 @@
 let request = require('request');
 const express = require('express');
 const fs = require('fs');
-const apiKey = '33ef1db71f05c00a307ab785de4fcc318ffd1a88';
+const ConvertAPI = require('convertapi')('MhqoqQu96XFUe3R6');
 const FetchDownloadFile = express.Router();
 
 
 FetchDownloadFile.post('/FetchDownload', (req, res) => {
 
-    const filetype = req?.headers?.filetype
-    const filepath = req?.headers?.filepath
-    console.log(filepath, filetype)    
+    const {filepath, filetype} = req.headers;
+    console.log(filepath,typeof filetype);
+    ConvertAPI.convert(filetype, { File:filepath})
+    .then(function(result) {
+      // get converted file url
+      console.log("Converted file url: " + result.file.url);
+      // save to file
+      return result.file.save('./public');
+    })
+    .then(function(file) {
+      console.log("File saved: " + file);
+      res.status(200).json({ success: true, message:'file convert successfully', localfile:file})
+      fs.unlink(file, () => {})
+    })
+    .catch(function(e) {
+      console.error(e.toString(),'error occured');
+      res.status(200).json({ success: true, message:'file convert successfully'})
+    });
 
-    if(!filetype && !filepath) {
-        res.status(404).json({success:false, message:'File type and file path missing'})
-    }
-
-    const localfile = `./public/${Date.now()}.${filetype?.toLowerCase()}`
-    const formData = {
-        target_format: filetype,
-        source_file: fs.createReadStream(filepath)
-    };
-
-
-    // creating the convertion job 
-    request.post({ url: 'https://sandbox.zamzar.com/v1/jobs/', formData: formData }, function (err, response, body) {
-        if (err) {
-            console.error('Unable to start conversion job', err);
-        } else {
-            // console.log(formData.source_file)\
-            console.log('SUCCESS! Conversion job started:', JSON.parse(body));
-            const poll = JSON.parse(body);
-            if(poll.errors) {
-                res.status(500).json({success: false, message: poll.errors[0].message})
-            }
-            let jobID = poll.id
-            pollJobStatuss(jobID)
-        }
-    }).auth(apiKey, 'Zamzar@854no', true);
-
-
-    function pollJobStatuss(jobID) {
-        const pollInterval = 5000; // Poll every 5 seconds
-        const maxAttempts = 20; // Maximum number of attempts
-        let attempts = 0;
-        const poll = setInterval(function () {
-            attempts++;
-            request.get(`https://sandbox.zamzar.com/v1/jobs/${jobID}`, function (err, response, body) {
-                if (err) {
-                    console.error('Unable to get job', err);
-                } else {
-                    const jobStatus = JSON.parse(body).status;
-                    console.log(JSON.parse(body))
-                    console.log(`Job status: ${jobStatus}`);
-                    if (jobStatus === 'successful') {
-                        clearInterval(poll); // Stop polling if the job is successful
-                        const data = JSON.parse(body)
-                        const fileID = data.target_files[0].id;
-                        console.log(fileID);
-                        downloadConvertedFile(fileID);
-                    } else if (jobStatus === 'failed' || attempts >= maxAttempts) {
-                        clearInterval(poll); // Stop polling on failure or max attempts reached
-                    }
-                }
-            }).auth(apiKey, 'Zamzar@854no', true);
-        }, pollInterval);
-    }
-
-
-    const downloadConvertedFile = (fileID) => {
-
-        request.get({ url: `https://sandbox.zamzar.com/v1/files/${fileID}/content`, followRedirect: false }, function (err, response, body) {
-            if (err) {
-                console.error('Unable to download file:', err);
-            } else {
-                // We are being redirected
-                if (response.headers.location) {
-                    // Issue a second request to download the file
-                    var fileRequest = request(response.headers.location);
-                    fileRequest.on('response', function (res) {
-                        res.pipe(fs.createWriteStream(localfile));
-                    });
-                    fileRequest.on('end', function () {
-                        console.log('File download complete');
-                    });
-                }
-            }
-        }).auth(apiKey, 'Zamzar@854no', true).pipe(fs.createWriteStream(localfile));
-        fs.unlink(filepath,(err) => {
-            console.log(err, 'error from unlinking file');
-        })        
-        res.status(200).json({success: true, message:"successfully created converted file", localfile});
-    }
-    
 })
 
 

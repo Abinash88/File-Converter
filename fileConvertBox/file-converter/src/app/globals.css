@@ -22,22 +22,22 @@
 
 
 .changecolor{
-  color:#ffbd15 !important ;
+  color:#ffbc14 !important ;
 }
 
 .herosection{
-  background: #1650e4;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
+  /* background: #1D5D9B; */
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
 }
 
 .topheader{
-  background: #1650e4;
+  background: #20203a;
 }
 
 
 .blogpage{
-  background: #1650e4;
+  background: #20203a;
 }
 
 /* title style section  */

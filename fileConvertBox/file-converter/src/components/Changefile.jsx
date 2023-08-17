@@ -29,7 +29,6 @@ const Changefile = () => {
     const type = file[file.length - 1];
     return type;
   };
-
   const SendFileTypeToChange = (filetype) => {
     // setting the toggle for the filetype chooser box
     setToggle(false);
@@ -66,7 +65,7 @@ const Changefile = () => {
         </div>
 
         <p className="text-gray-100 bg-green-600 font-semibold px-2 rounded-md">
-          {GetType ? `${getTheType(Oldfile)} To ${GetType}` : null}aefasdfas
+          {GetType ? `${getTheType(Oldfile)} To ${GetType}` : null}
         </p>
 
         <div className="">
@@ -74,7 +73,7 @@ const Changefile = () => {
           {!ConversionLoading ? 
           <div
             onClick={ToggleFileTypeBox}
-            className="w-[90px] cursor-pointer h-[30px] px-2 space-x-4 border border-green-300 rounded-md flex items-center justify-end"
+            className="w-auto cursor-pointer h-[30px] px-2 space-x-4 border border-green-300 rounded-md flex items-center justify-end"
           >
             <p className="text-gray-200">{GetType ? GetType : ""}</p>
             <ChevronDownIcon className="h-7 text-green-300 " />

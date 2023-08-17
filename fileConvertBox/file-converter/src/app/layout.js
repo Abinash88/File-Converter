@@ -38,11 +38,12 @@ export default function RootLayout({ children }) {
   // setting the download file for downloading the file in the user device
   const [downloadFile, setDownloadFile] = useState('');
 
+
   // run another fetch function for conversion of file 
   const GetFilePath = async (files, setfiles) => {
     setfilestoShow(files)
     try {
-      // putting  file in the formdata 
+      // putting  file in the formdata
       const formData = new FormData();
       formData.append("files", files);
       setloading(true);
@@ -56,14 +57,15 @@ export default function RootLayout({ children }) {
       setfiles(null);
       setloading(false);
       setOldfile(data?.filepath)
-      console.log(data);
-      setGettype(data?.fileType);
+      setGettype(data?.filetype);
     } catch (err) {
       console.log(err.message);
       setloading(false);
       setfiles(null);
     }
   };
+
+
   // fetch for getting conversion the file 
   const FetchDownload = async (filetype, Oldfile) => {
     setConversionLoading(true);
@@ -94,6 +96,7 @@ export default function RootLayout({ children }) {
 
   // fetch for downloading the files
   const DownLoadFile = async (DownLoadFile) => {
+    if(!downloadFile) return toast.error('choose some file type');
     const querystring = `?Oldfile=${encodeURIComponent(DownLoadFile)}`;
     const data = downloadFile.split('.');
     const outputfileType = data[data.length - 1];

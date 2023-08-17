@@ -17,9 +17,9 @@ const MoreConvert = () => {
   return (
     <div id="moreConvert" className="w-full  h-full">
       <div className="w-[80%] mx-auto  ">
-        <div className="pt-[50px]">
-          <h2 className="sm:text-[36px] text-[29px] font-bold text-slate-600 text-center">
-            More File Type Converter
+        <div className="pt-[20px]">
+          <h2 className="sm:text-[45px] text-[29px] font-bold text-slate-600 text-center">
+            More File Type
           </h2>
           <p className="text-center mt-4 font-semibold text-gray-500 text-[15px] sm:text-[17px]">
             Convert your file to any format.
